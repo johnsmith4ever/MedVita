@@ -1,0 +1,2 @@
+export const DISCLAIMER_SHORT = "Student-made project. It can be wrong. Don't rely on it for medical decisions."
+export const DISCLAIMER_LONG = "MedVita is a student-made project that gives general information only. It is not a medical service, not a diagnosis, and it can make mistakes. Don't rely on it to decide whether or not to get medical help. If you think it's an emergency, call 999. For urgent advice, call NHS 111."

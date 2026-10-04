@@ -1,0 +1,225 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --vitaly-ink: 28 27 26;
+  --vitaly-muted: 114 109 102;
+  --vitaly-line: 231 226 218;
+  --vitaly-canvas: 251 250 246;
+  --vitaly-paper: 244 241 234;
+  --vitaly-surface: 255 255 255;
+  --vitaly-accent: 168 68 63;
+  --vitaly-accent-deep: #7e302c;
+  --vitaly-accent-soft: #f4e3e0;
+  --vitaly-emergency: #c4272b;
+  --vitaly-emergency-soft: #fbe4e4;
+  --vitaly-moss: 75 107 79;
+  --vitaly-moss-soft: #e7efe6;
+  --vitaly-slate: 63 86 112;
+  --vitaly-slate-soft: #e8eef4;
+  --vitaly-amber: 156 107 46;
+  --vitaly-amber-soft: #f4ecdd;
+}
+
+.dark {
+  --vitaly-ink: 242 240 236;
+  --vitaly-muted: 166 163 171;
+  --vitaly-line: 36 35 32;
+  --vitaly-canvas: 11 10 9;
+  --vitaly-paper: 21 20 18;
+  --vitaly-surface: 22 20 16;
+  --vitaly-accent: 194 85 79;
+  --vitaly-accent-deep: #a3423c;
+  --vitaly-accent-soft: rgba(194, 85, 79, 0.16);
+  --vitaly-emergency: #e0393d;
+  --vitaly-emergency-soft: rgba(224, 57, 61, 0.16);
+  --vitaly-moss: 130 183 135;
+  --vitaly-moss-soft: rgba(130, 183, 135, 0.14);
+  --vitaly-slate: 143 176 214;
+  --vitaly-slate-soft: rgba(143, 176, 214, 0.14);
+  --vitaly-amber: 224 165 82;
+  --vitaly-amber-soft: rgba(224, 165, 82, 0.14);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: rgb(var(--vitaly-canvas));
+  scroll-behavior: smooth;
+  transition: background 0.3s ease;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: rgb(var(--vitaly-canvas));
+  background-image: radial-gradient(circle at 1px 1px, rgba(128, 128, 128, 0.035) 1px, transparent 0);
+  background-size: 22px 22px;
+  color: rgb(var(--vitaly-ink));
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  background: #f0d2ce;
+  color: #1c1b1a;
+}
+
+.fade-in {
+  animation: fade-in 0.4s ease both;
+}
+
+.pulse-draw {
+  stroke-dasharray: 900;
+  stroke-dashoffset: 900;
+  animation: draw 1.8s cubic-bezier(0.65, 0, 0.35, 1) 0.15s forwards;
+}
+
+.hero-rise {
+  opacity: 0;
+  transform: translateY(14px);
+  animation: rise 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.panel-expand {
+  animation: expand 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes draw {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes rise {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes expand {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.text-gradient {
+  background: linear-gradient(120deg, #a8443f 0%, #e2683c 55%, #f0a85f 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.btn-gradient {
+  background: linear-gradient(120deg, #a8443f 0%, #c2542e 100%);
+  box-shadow: 0 10px 30px -6px rgba(168, 68, 63, 0.45);
+}
+
+.btn-gradient:hover {
+  box-shadow: 0 14px 38px -6px rgba(168, 68, 63, 0.6);
+}
+
+.pulse-flow {
+  stroke-dasharray: 14 10;
+  animation: flow 1.4s linear infinite;
+}
+
+@keyframes flow {
+  to { stroke-dashoffset: -48; }
+}
+
+.orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(50px);
+  animation: drift 9s ease-in-out infinite;
+}
+
+@keyframes drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(18px, -14px) scale(1.08); }
+}
+
+.badge-glow {
+  box-shadow: 0 0 0 1px rgba(168, 68, 63, 0.12), 0 8px 24px -8px rgba(168, 68, 63, 0.35);
+}
+
+.card-tilt {
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.card-tilt:hover {
+  transform: translateY(-4px) rotate(-0.4deg);
+}
+
+/* ─── Photo Strip (landing hero image slider) ─────────────────────────────── */
+
+.photo-strip-track {
+  display: flex;
+  gap: 16px;
+  /* 3 copies of images; we animate one full copy width = 33.333% */
+  animation: photo-scroll 28s linear infinite;
+  will-change: transform;
+}
+
+.photo-strip-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes photo-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-33.333%); }
+}
+
+.photo-strip-wrap {
+  overflow: hidden;
+  /* Fade edges for a cinematic reveal */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+}
+
+.photo-strip-img {
+  height: 180px;
+  width: 260px;
+  flex-shrink: 0;
+  object-fit: cover;
+  border-radius: 1.25rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.photo-strip-img:hover {
+  transform: scale(1.03) translateY(-3px);
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.3);
+}
