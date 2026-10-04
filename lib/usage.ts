@@ -27,6 +27,10 @@ export async function getUsage(clerkToken: string, userId: string): Promise<Usag
   const db = createServerClient(clerkToken)
   const today = new Date().toISOString().slice(0, 10)
 
+  if (!db) {
+    return { user_id: userId, questions_used: 0, last_reset_date: today }
+  }
+
   const { data, error } = await db
     .from('daily_usage')
     .select('*')
@@ -66,10 +70,12 @@ export async function consumeQuestion(clerkToken: string, userId: string): Promi
   const db = createServerClient(clerkToken)
   const next = current.questions_used + 1
 
-  await db
-    .from('daily_usage')
-    .update({ questions_used: next })
-    .eq('user_id', userId)
+  if (db) {
+    await db
+      .from('daily_usage')
+      .update({ questions_used: next })
+      .eq('user_id', userId)
+  }
 
   return { ...current, questions_used: next }
 }
