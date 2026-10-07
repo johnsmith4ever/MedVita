@@ -487,7 +487,7 @@ function Landing({ onEnter }: { onEnter: () => void }) {
             </div>
           </div>
 
-          <SignInButton mode="modal" forceRedirectUrl="/app">
+          <SignInButton mode="modal" asChild forceRedirectUrl="/">
             <button
               disabled={!agreed}
               className="mt-7 inline-flex items-center gap-2.5 rounded-full px-6 py-4 text-sm font-bold shadow-lg transition disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 hover:-translate-y-0.5"
