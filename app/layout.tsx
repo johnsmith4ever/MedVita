@@ -4,9 +4,19 @@ import { ClerkProvider } from '@clerk/nextjs'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'MedVita — AI Symptom Reference',
+  metadataBase: new URL('https://medvita.perenne-ai.co.uk'),
+  title: 'MedVita - Student-made symptom guide',
   description:
-    'Stop guessing what a symptom means. MedVita gives you one clear, tiered answer — not twenty conflicting tabs.',
+    'A student-made project that gives general information about symptoms and when to get help. Not a medical service or diagnosis. Can make mistakes.',
+  openGraph: {
+    title: 'MedVita - Student-made symptom guide',
+    description:
+      'A student-made project that gives general information about symptoms and when to get help. Not a medical service or diagnosis. Can make mistakes.',
+    siteName: 'MedVita',
+  },
+  verification: {
+    google: 'PASTE_TOKEN_HERE',
+  },
 }
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

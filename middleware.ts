@@ -12,9 +12,11 @@
 import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server'
 
 const isPublicRoute = createRouteMatcher([
-  '/',            // Landing page — unauthenticated visitors land here
+  '/',             // Landing page — unauthenticated visitors land here
   '/sign-in(.*)', // Clerk-hosted sign-in
   '/api/health',  // Optional health-check probe
+  '/sitemap.xml', // Must be public so search engines can read it
+  '/robots.txt',  // Must be public so search engines can read it
 ])
 
 export default clerkMiddleware(async (auth, request) => {
