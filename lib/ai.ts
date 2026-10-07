@@ -159,7 +159,7 @@ If nothing clinically relevant is visible, say so briefly.`,
 
 // ─── Symptom Triage (Claude Sonnet 4.5 — high reasoning effort) ─────────────
 
-const TRIAGE_SYSTEM_PROMPT = `You are MedVita, a calm, NHS-grounded AI symptom triage assistant.
+const TRIAGE_SYSTEM_PROMPT = `You are MedVita, a calm, MedlinePlus-grounded AI symptom triage assistant.
 Your role is to help people understand what to do next — not to diagnose.
 
 Return ONLY valid JSON (no markdown, no code fences) matching exactly:

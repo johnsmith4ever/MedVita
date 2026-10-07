@@ -11,6 +11,7 @@ import {
   Database,
   ArrowRight,
   ImagePlus,
+  Info,
   MessageCircle,
   Moon,
   Plus,
@@ -350,6 +351,7 @@ type Tab = 'home' | 'why-us' | 'about' | 'what-we-do' | 'limits'
 
 function Landing({ onEnter }: { onEnter: () => void }) {
   const [agreed, setAgreed] = useState(false)
+  const [disclaimerExpanded, setDisclaimerExpanded] = useState(false)
   const bg = '#fbfaf6'
   const text = '#1c1b1a'
   const muted = '#726d66'
@@ -364,8 +366,8 @@ function Landing({ onEnter }: { onEnter: () => void }) {
   const trio = [
     {
       Icon: Database,
-      title: 'NHS-grounded',
-      body: 'Reference answers are checked against the official NHS conditions database, not scraped from random forums.',
+      title: 'MedlinePlus-grounded',
+      body: 'Reference answers are checked against public MedlinePlus health information, not scraped from random forums.',
       color: '#3f5670',
       soft: '#e8eef4',
     },
@@ -396,22 +398,26 @@ function Landing({ onEnter }: { onEnter: () => void }) {
 
       <section className="relative z-10 mx-auto grid w-full max-w-6xl gap-10 px-5 pb-20 pt-10 sm:px-8 sm:pt-16 lg:grid-cols-[1.3fr_1fr] lg:items-start lg:gap-14">
         <div className="hero-rise relative" style={{ animationDelay: '0.05s' }}>
-          <svg className="pointer-events-none absolute -right-4 -top-10 hidden w-40 opacity-70 sm:block lg:-right-10" viewBox="0 0 160 160" fill="none">
-            <g transform="rotate(-18 40 40)">
-              <rect x="14" y="24" width="52" height="24" rx="12" fill="#a8443f" opacity="0.85" />
-              <rect x="14" y="24" width="26" height="24" rx="12" fill="#fbfaf6" opacity="0.9" />
-            </g>
-            <g transform="rotate(24 120 60)">
-              <rect x="94" y="46" width="44" height="20" rx="10" fill="#3f5670" opacity="0.7" />
-              <rect x="94" y="46" width="22" height="20" rx="10" fill="#fbfaf6" opacity="0.9" />
-            </g>
-            <g transform="rotate(-8 70 120)">
-              <rect x="46" y="108" width="48" height="22" rx="11" fill="#9c6b2e" opacity="0.75" />
-              <rect x="46" y="108" width="24" height="22" rx="11" fill="#fbfaf6" opacity="0.9" />
-            </g>
-            <circle cx="130" cy="18" r="5" fill="#9c6b2e" opacity="0.6" />
-            <circle cx="18" cy="130" r="4" fill="#3f5670" opacity="0.6" />
-          </svg>
+          <div className="pointer-events-none absolute -right-8 -top-8 hidden h-[280px] w-[260px] sm:block lg:-right-20 lg:-top-4">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/pills-mixed.jpg"
+              alt=""
+              className="absolute right-0 top-0 h-36 w-36 rotate-6 rounded-3xl border-4 border-[#fbfaf6] object-cover shadow-xl"
+            />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/blister-packs.jpg"
+              alt=""
+              className="absolute left-0 top-24 h-28 w-28 -rotate-6 rounded-3xl border-4 border-[#fbfaf6] object-cover shadow-lg opacity-95"
+            />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/pharmacy-shelf.jpg"
+              alt=""
+              className="absolute right-8 top-44 h-24 w-24 rotate-3 rounded-2xl border-4 border-[#fbfaf6] object-cover shadow-md opacity-90"
+            />
+          </div>
 
           <div
             className="mb-7 inline-flex items-center gap-2 rounded-full border px-3.5 py-2 text-xs font-semibold"
@@ -433,19 +439,52 @@ function Landing({ onEnter }: { onEnter: () => void }) {
           </h1>
 
           <p className="mt-6 max-w-md text-[15px] leading-7" style={{ color: muted }}>
-            Stop guessing what a symptom means. MedVita&apos;s AI reads what you describe, checks it against official NHS reference data, and gives you one clear, tiered answer — not twenty conflicting tabs.
+            Stop guessing what a symptom means. MedVita&apos;s AI reads what you describe, checks it against public MedlinePlus health information, and gives you one clear, tiered answer — not twenty conflicting tabs.
           </p>
 
-          <div className="mt-8 max-w-md">
-            <p className="text-[11px] leading-5 mb-3" style={{ color: muted }}>
-              {DISCLAIMER_LONG}
-            </p>
-            <label className="flex items-start gap-3 cursor-pointer">
-              <input type="checkbox" checked={agreed} onChange={(e) => setAgreed(e.target.checked)} className="mt-0.5 h-4 w-4 rounded border-vitaly-line accent-vitaly-ink" />
-              <span className="text-xs" style={{ color: muted }}>
-                I understand MedVita is a student-made project and can be wrong.
-              </span>
-            </label>
+          <div
+            className="mt-8 max-w-md rounded-[16px] border px-4 py-4 sm:px-5"
+            style={{ background: '#f5f3ef', borderColor: panelBorder }}
+          >
+            <div className="flex items-start gap-3">
+              <Info size={16} className="mt-[3px] shrink-0" style={{ color: muted }} />
+              <div className="min-w-0">
+                <p className="text-[14px] font-semibold" style={{ color: text }}>
+                  {DISCLAIMER_SHORT}
+                </p>
+
+                <div className="mt-2 text-[13px] leading-relaxed" style={{ color: muted }}>
+                  <p className={disclaimerExpanded ? '' : 'line-clamp-2'}>
+                    {DISCLAIMER_LONG.split(' If you think')[0]}
+                  </p>
+                  <button
+                    onClick={() => setDisclaimerExpanded(!disclaimerExpanded)}
+                    className="mt-1 font-medium hover:underline"
+                    style={{ color: text }}
+                  >
+                    {disclaimerExpanded ? 'Read less' : 'Read more'}
+                  </button>
+                  <p className="mt-2 font-medium" style={{ color: text }}>
+                    If you think{DISCLAIMER_LONG.split(' If you think')[1]}
+                  </p>
+                </div>
+
+                <label className="group -ml-2 mt-4 flex cursor-pointer items-start gap-3 rounded-xl p-2 transition hover:bg-black/5">
+                  <div className="relative mt-[2px] flex h-5 w-5 shrink-0 items-center justify-center">
+                    <input
+                      type="checkbox"
+                      checked={agreed}
+                      onChange={(e) => setAgreed(e.target.checked)}
+                      className="peer absolute h-full w-full cursor-pointer appearance-none rounded-[5px] border-[1.5px] border-[#b3b0aa] bg-transparent outline-none transition-all duration-150 checked:border-vitaly-accent checked:bg-vitaly-accent focus-visible:ring-2 focus-visible:ring-vitaly-accent focus-visible:ring-offset-2 focus-visible:ring-offset-[#f5f3ef]"
+                    />
+                    <Check size={12} strokeWidth={4} className="pointer-events-none absolute text-white opacity-0 transition-opacity duration-150 peer-checked:opacity-100" />
+                  </div>
+                  <span className="text-[13px] font-semibold" style={{ color: text }}>
+                    I understand MedVita is a student-made project and can be wrong.
+                  </span>
+                </label>
+              </div>
+            </div>
           </div>
 
           <SignInButton mode="modal" forceRedirectUrl="/app">
@@ -465,7 +504,7 @@ function Landing({ onEnter }: { onEnter: () => void }) {
           </div>
           <div className="space-y-5">
             {[
-              { title: 'NHS-grounded, always', body: "We don't guess. Every reference answer is checked against the official NHS conditions database before you see it." },
+              { title: 'MedlinePlus-grounded, always', body: "We don't guess. Every reference answer is checked against public MedlinePlus health information before you see it." },
               { title: 'One clear answer', body: 'No twenty tabs, no maybe. A single tiered result — self-care to emergency — in plain language.' },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3">
@@ -485,7 +524,7 @@ function Landing({ onEnter }: { onEnter: () => void }) {
       {/* ── Photo strip ── */}
       <div className="relative z-10 mx-auto w-full max-w-6xl px-0 pb-10 sm:pb-14">
         <p className="mb-4 px-5 text-[11px] font-semibold uppercase tracking-[0.1em] sm:px-8" style={{ color: muted }}>
-          Trusted reference · Real medicine
+          Public reference · MedlinePlus information
         </p>
         <PhotoStrip />
       </div>
@@ -579,7 +618,7 @@ function SymptomScreen({
         <StepTrack step={1} />
         <div className="mb-7">
           <h1 className="font-serif text-3xl font-medium tracking-[-0.02em] sm:text-4xl">Start with the whole picture.</h1>
-          <p className="mt-2 max-w-2xl text-sm leading-6 text-vitaly-muted">Details can provide with more accurate info. Keep it in your own words.</p>
+          <p className="mt-2 max-w-2xl text-sm leading-6 text-vitaly-muted">Details can provide with more helpful info. Keep it in your own words.</p>
         </div>
 
         <div className="space-y-5">
