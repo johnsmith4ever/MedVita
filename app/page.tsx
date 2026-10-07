@@ -487,15 +487,24 @@ function Landing({ onEnter }: { onEnter: () => void }) {
             </div>
           </div>
 
-          <SignInButton mode="modal" asChild forceRedirectUrl="/">
+          {agreed ? (
+            <SignInButton mode="modal" forceRedirectUrl="/">
+              <button
+                className="mt-7 inline-flex items-center gap-2.5 rounded-full px-6 py-4 text-sm font-bold shadow-lg transition hover:-translate-y-0.5"
+                style={{ background: ctaBg, color: ctaText }}
+              >
+                Try it out <ArrowRight size={16} />
+              </button>
+            </SignInButton>
+          ) : (
             <button
-              disabled={!agreed}
-              className="mt-7 inline-flex items-center gap-2.5 rounded-full px-6 py-4 text-sm font-bold shadow-lg transition disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 hover:-translate-y-0.5"
+              disabled
+              className="mt-7 inline-flex items-center gap-2.5 rounded-full px-6 py-4 text-sm font-bold shadow-lg transition opacity-50 cursor-not-allowed"
               style={{ background: ctaBg, color: ctaText }}
             >
               Try it out <ArrowRight size={16} />
             </button>
-          </SignInButton>
+          )}
         </div>
 
         <div className="hero-rise rounded-3xl border p-6 sm:p-7" style={{ animationDelay: '0.15s', borderColor: panelBorder, background: panelBg }}>
