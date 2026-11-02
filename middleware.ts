@@ -1,5 +1,5 @@
 /**
- * middleware.ts — Clerk route protection for MedVita
+ * middleware.ts — Clerk route protection for Auvora
  *
  * NOTE: The prompt referenced proxy.ts to avoid a known Next.js 16 / Clerk
  * middleware conflict. In Next.js 15 (which this project uses), the file must

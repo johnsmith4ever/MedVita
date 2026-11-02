@@ -31,7 +31,7 @@ import { MockLoader } from '../components/mock-loader'
 import type { TriageResult, CaseInput } from '../lib/ai'
 import { DIAGNOSES_PER_DAY, FOLLOWUPS_PER_DAY } from '../lib/limits'
 import { ResultCard } from '../components/result-card'
-import { MedVitaMark } from '../components/medvita-logo'
+import { AuvoraMark } from '../components/auvora-logo'
 import { StepTrack } from '../components/step-track'
 import { PhotoStrip } from '../components/photo-strip'
 import { DISCLAIMER_SHORT, DISCLAIMER_LONG } from '../lib/constants'
@@ -121,7 +121,7 @@ export default function HomePage() {
   const canSend = useMemo(() => followUp.trim().length > 0 && usedQuestions < FOLLOWUPS_PER_DAY, [followUp, usedQuestions])
 
   // ── Session persistence: keep the last diagnosis across refreshes (per user, resets with the daily limit) ──
-  const sessionKey = user?.id ? `medvita:session:${user.id}` : null
+  const sessionKey = user?.id ? `auvora:session:${user.id}` : null
 
   useEffect(() => {
     if (!isLoaded) return
@@ -391,8 +391,8 @@ function Landing({ onEnter }: { onEnter: () => void }) {
     <div className="min-h-screen transition-colors duration-300" style={{ background: bg, color: text }}>
       <header className="relative z-10 mx-auto flex w-full max-w-6xl items-center justify-between px-5 py-5 sm:px-8">
         <div className="flex items-center gap-2.5">
-          <MedVitaMark size={30} />
-          <span className="font-serif text-[17px] font-semibold tracking-[0.02em]" style={{ color: text }}>MEDVITA</span>
+          <AuvoraMark size={30} />
+          <span className="font-serif text-[17px] font-semibold tracking-[0.02em]" style={{ color: text }}>AUVORA</span>
         </div>
       </header>
 
@@ -439,7 +439,7 @@ function Landing({ onEnter }: { onEnter: () => void }) {
           </h1>
 
           <p className="mt-6 max-w-md text-[15px] leading-7" style={{ color: muted }}>
-            Stop guessing what a symptom means. MedVita&apos;s AI reads what you describe, checks it against public MedlinePlus health information, and gives you one clear, tiered answer — not twenty conflicting tabs.
+            Stop guessing what a symptom means. Auvora&apos;s AI reads what you describe, checks it against public MedlinePlus health information, and gives you one clear, tiered answer — not twenty conflicting tabs.
           </p>
 
           <div
@@ -480,7 +480,7 @@ function Landing({ onEnter }: { onEnter: () => void }) {
                     <Check size={12} strokeWidth={4} className="pointer-events-none absolute text-white opacity-0 transition-opacity duration-150 peer-checked:opacity-100" />
                   </div>
                   <span className="text-[13px] font-semibold" style={{ color: text }}>
-                    I understand MedVita is a student-made project and can be wrong.
+                    I understand Auvora is a student-made project and can be wrong.
                   </span>
                 </label>
               </div>
@@ -540,7 +540,7 @@ function Landing({ onEnter }: { onEnter: () => void }) {
 
       <section className="relative z-10 mx-auto w-full max-w-6xl px-5 pb-24 sm:px-8">
         <h2 className="text-2xl font-bold tracking-[-0.01em] sm:text-3xl" style={{ color: text }}>What&apos;s under the hood</h2>
-        <p className="mt-2 max-w-lg text-sm leading-6" style={{ color: muted }}>Everything that makes a MedVita result different from a generic AI guess.</p>
+        <p className="mt-2 max-w-lg text-sm leading-6" style={{ color: muted }}>Everything that makes an Auvora result different from a generic AI guess.</p>
         <div className="mt-9 grid gap-5 sm:grid-cols-3">
           {trio.map((item) => (
             <div key={item.title} className="card-tilt rounded-3xl border p-6" style={{ borderColor: panelBorder, background: panelBg }}>
@@ -556,10 +556,10 @@ function Landing({ onEnter }: { onEnter: () => void }) {
 
       <footer className="relative z-10 border-t px-5 py-8 sm:px-8" style={{ borderColor: panelBorder }}>
         <div className="mx-auto flex w-full max-w-6xl items-center gap-2.5">
-          <MedVitaMark size={22} />
-          <span className="font-serif text-[13px] font-semibold tracking-[0.02em]" style={{ color: muted }}>MEDVITA</span>
+          <AuvoraMark size={22} />
+          <span className="font-serif text-[13px] font-semibold tracking-[0.02em]" style={{ color: muted }}>AUVORA</span>
         </div>
-        <p className="mx-auto mt-2 max-w-6xl text-[11px]" style={{ color: muted }}>© 2026 MedVita. Not a diagnosis — always see a clinician for medical advice.</p>
+        <p className="mx-auto mt-2 max-w-6xl text-[11px]" style={{ color: muted }}>© 2026 Auvora. Not a diagnosis — always see a clinician for medical advice.</p>
       </footer>
     </div>
   )
@@ -802,7 +802,7 @@ function ThreadScreen({
             {messages.map((message) => (
               <div key={message.id} className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                 <div className={`flex max-w-[88%] items-end gap-2.5 ${message.role === 'user' ? 'flex-row-reverse' : ''}`}>
-                  {message.role === 'assistant' && <div className="shrink-0"><MedVitaMark size={30} /></div>}
+                  {message.role === 'assistant' && <div className="shrink-0"><AuvoraMark size={30} /></div>}
                   <div className={`${message.role === 'user' ? 'rounded-3xl rounded-br-md bg-vitaly-accent text-white' : 'rounded-3xl rounded-bl-md border border-vitaly-line bg-vitaly-paper/50 text-vitaly-ink'} px-4 py-3 text-sm leading-6`}>
                     {message.text}
                   </div>

@@ -8,7 +8,7 @@ export function MockLoader() {
           <LoaderCircle size={22} className="animate-spin" />
         </div>
         <p className="mt-5 font-serif text-lg font-medium tracking-[-0.01em]">Reviewing your symptoms</p>
-        <p className="mt-1.5 max-w-xs text-sm leading-6 text-vitaly-muted">Cross-referencing your symptoms with the MedVita conditions database...</p>
+        <p className="mt-1.5 max-w-xs text-sm leading-6 text-vitaly-muted">Cross-referencing your symptoms with the Auvora conditions database...</p>
       </div>
     </div>
   )

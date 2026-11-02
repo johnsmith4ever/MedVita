@@ -63,7 +63,7 @@ function extractJson<T>(text: string): T {
 function logCacheUsage(label: string, usage?: Record<string, number>) {
   if (process.env.NODE_ENV === 'production' || !usage) return
   console.log(
-    `[MedVita] cache usage (${label}):`,
+    `[Auvora] cache usage (${label}):`,
     JSON.stringify({
       cache_creation_input_tokens: usage.cache_creation_input_tokens ?? 0,
       cache_read_input_tokens: usage.cache_read_input_tokens ?? 0,
@@ -149,7 +149,7 @@ If nothing clinically relevant is visible, say so briefly.`,
       const text = json.candidates?.[0]?.content?.parts?.[0]?.text
       if (text) return text
     } catch (err) {
-      console.error('[MedVita] Gemini image analysis error:', err)
+      console.error('[Auvora] Gemini image analysis error:', err)
     }
   }
 
@@ -159,7 +159,7 @@ If nothing clinically relevant is visible, say so briefly.`,
 
 // ─── Symptom Triage (Claude Sonnet 4.5 — high reasoning effort) ─────────────
 
-const TRIAGE_SYSTEM_PROMPT = `You are MedVita, a calm, MedlinePlus-grounded AI symptom triage assistant.
+const TRIAGE_SYSTEM_PROMPT = `You are Auvora, a calm, MedlinePlus-grounded AI symptom triage assistant.
 Your role is to help people understand what to do next — not to diagnose.
 
 Return ONLY valid JSON (no markdown, no code fences) matching exactly:
@@ -278,14 +278,14 @@ export async function triageSymptoms(params: {
 
       const json = await response.json()
       logCacheUsage('triage', json.usage)
-      if (!response.ok) console.error('[MedVita] Anthropic API error:', JSON.stringify(json))
+      if (!response.ok) console.error('[Auvora] Anthropic API error:', JSON.stringify(json))
       const text = json.content?.find((b: { type: string }) => b.type === 'text')?.text
       if (text) {
         const parsed = normaliseResult(extractJson<unknown>(text))
         return { ...parsed, imageInsight: params.imageInsight }
       }
     } catch (err) {
-      console.error('[MedVita] Claude triage error:', err)
+      console.error('[Auvora] Claude triage error:', err)
     }
   }
 
@@ -313,7 +313,7 @@ export async function triageSymptoms(params: {
 
 // ─── Follow-up Messages (Claude Sonnet 4.5 — high reasoning effort) ──────────
 
-const FOLLOW_UP_SYSTEM_PROMPT = `You are MedVita's follow-up assistant. The user has already received a triage result for their case (provided below). Your job is to answer their follow-up question using THEIR specific situation, not generic health advice.
+const FOLLOW_UP_SYSTEM_PROMPT = `You are Auvora's follow-up assistant. The user has already received a triage result for their case (provided below). Your job is to answer their follow-up question using THEIR specific situation, not generic health advice.
 
 RULES
 1. Answer the actual question in the first sentence. No preamble, no 'it can help to rest and stay hydrated' filler.
@@ -442,12 +442,12 @@ export async function generateFollowUp(params: {
       })
 
       const json = await response.json()
-      if (!response.ok) console.error('[MedVita] Anthropic follow-up API error:', JSON.stringify(json))
+      if (!response.ok) console.error('[Auvora] Anthropic follow-up API error:', JSON.stringify(json))
       logCacheUsage('follow-up', json.usage)
       const text = json.content?.find((b: { type: string }) => b.type === 'text')?.text
       if (text) return { text }
     } catch (err) {
-      console.error('[MedVita] Claude follow-up error:', err)
+      console.error('[Auvora] Claude follow-up error:', err)
     }
   }
 

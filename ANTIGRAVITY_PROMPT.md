@@ -1,10 +1,10 @@
-# Build prompt for Antigravity — MedVita
+# Build prompt for Antigravity — Auvora
 
 Paste everything below into Antigravity along with this project folder.
 
 ---
 
-I have a finished, working frontend for **MedVita** — an AI-powered health symptom triage tool. It's a Next.js 15 (App Router) + TypeScript + Tailwind project. The UI is fully built and styled (design system: warm paper canvas, brick-red accent, Fraunces serif headlines + Inter body text) and currently runs entirely on hardcoded mock data. Your job is to build out the real backend and wire it up — but the actual AI API keys are NOT available yet, so structure things so the very last step, once I drop in keys, is the only thing left to do.
+I have a finished, working frontend for **Auvora** — an AI-powered health symptom triage tool. It's a Next.js 15 (App Router) + TypeScript + Tailwind project. The UI is fully built and styled (design system: warm paper canvas, brick-red accent, Fraunces serif headlines + Inter body text) and currently runs entirely on hardcoded mock data. Your job is to build out the real backend and wire it up — but the actual AI API keys are NOT available yet, so structure things so the very last step, once I drop in keys, is the only thing left to do.
 
 ## What's already built (don't rebuild this)
 - `app/page.tsx` — all four screens (auth, symptom input, results, follow-up thread) with full client-side state and mock data

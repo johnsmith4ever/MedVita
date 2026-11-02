@@ -4,15 +4,15 @@ import { ClerkProvider } from '@clerk/nextjs'
 import './globals.css'
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://medvita.perenne-ai.co.uk'),
-  title: 'MedVita - Student-made symptom guide',
+  metadataBase: new URL('https://auvora.perenne-ai.co.uk'),
+  title: 'Auvora - Student-made symptom guide',
   description:
     'A student-made project that gives general information about symptoms and when to get help. Not a medical service or diagnosis. Can make mistakes.',
   openGraph: {
-    title: 'MedVita - Student-made symptom guide',
+    title: 'Auvora - Student-made symptom guide',
     description:
       'A student-made project that gives general information about symptoms and when to get help. Not a medical service or diagnosis. Can make mistakes.',
-    siteName: 'MedVita',
+    siteName: 'Auvora',
   },
   verification: {
     google: 'PASTE_TOKEN_HERE',

@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/app', '/api', '/sign-in'],
       },
     ],
-    sitemap: 'https://medvita.perenne-ai.co.uk/sitemap.xml',
+    sitemap: 'https://auvora.perenne-ai.co.uk/sitemap.xml',
   }
 }

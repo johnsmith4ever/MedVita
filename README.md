@@ -1,6 +1,6 @@
-# MedVita Frontend
+# Auvora Frontend
 
-Frontend-only mock interface for **MedVita**, an AI-powered health symptom triage concept.
+Frontend-only mock interface for **Auvora**, an AI-powered health symptom triage concept.
 
 ## Includes
 

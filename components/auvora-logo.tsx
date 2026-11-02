@@ -1,4 +1,4 @@
-export function MedVitaMark({ size = 36 }: { size?: number }) {
+export function AuvoraMark({ size = 36 }: { size?: number }) {
   return (
     <div
       className="grid shrink-0 place-items-center rounded-2xl bg-vitaly-accent text-white shadow-sm"
@@ -17,11 +17,11 @@ export function MedVitaMark({ size = 36 }: { size?: number }) {
   )
 }
 
-export function MedVitaLogo({ compact = false }: { compact?: boolean }) {
+export function AuvoraLogo({ compact = false }: { compact?: boolean }) {
   return (
     <div className="flex items-center gap-2.5">
-      <MedVitaMark size={36} />
-      {!compact && <span className="font-serif text-[19px] font-medium tracking-[-0.01em]">MedVita</span>}
+      <AuvoraMark size={36} />
+      {!compact && <span className="font-serif text-[19px] font-medium tracking-[-0.01em]">Auvora</span>}
     </div>
   )
 }

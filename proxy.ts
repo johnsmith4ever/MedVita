@@ -1,5 +1,5 @@
 /**
- * proxy.ts — Route protection for MedVita
+ * proxy.ts — Route protection for Auvora
  *
  * NOTE: This project intentionally uses proxy.ts instead of middleware.ts to
  * avoid a known conflict between Next.js 15/16 edge runtime and Clerk's

@@ -1,6 +1,6 @@
 import { ArrowLeft } from 'lucide-react'
 import { DailyLimit } from './daily-limit'
-import { MedVitaLogo } from './medvita-logo'
+import { AuvoraLogo } from './auvora-logo'
 
 export function AppHeader({
   questionsUsed,
@@ -24,7 +24,7 @@ export function AppHeader({
               <ArrowLeft size={16} />
             </button>
           )}
-          <MedVitaLogo />
+          <AuvoraLogo />
         </div>
         <div className="flex items-center gap-2">
           <DailyLimit questionsUsed={questionsUsed} diagnosesUsed={diagnosesUsed} />

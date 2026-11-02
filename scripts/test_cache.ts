@@ -2,7 +2,7 @@
  * scripts/test_cache.ts
  * Run: npx tsx --env-file=.env.local scripts/test_cache.ts
  * Verifies Anthropic prompt caching: same triage twice, then 3 follow-ups in one case.
- * Look for the "[MedVita] cache usage" lines (cache_creation / cache_read / input tokens).
+ * Look for the "[Auvora] cache usage" lines (cache_creation / cache_read / input tokens).
  */
 import { triageSymptoms, generateFollowUp, type CaseInput } from '../lib/ai'
 

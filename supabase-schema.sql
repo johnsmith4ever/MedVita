@@ -1,5 +1,5 @@
 -- ─────────────────────────────────────────────────────────────────────────────
--- MedVita Supabase Schema + RLS
+-- Auvora Supabase Schema + RLS
 --
 -- SETUP ORDER:
 --   1. In your Clerk dashboard → JWT Templates → New template → Supabase
